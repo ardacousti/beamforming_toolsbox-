@@ -1,9 +1,7 @@
 LICENSE – Usage Non-Commercial avec Notification en cas de Commercialisation
 Copyright (c) 2025 ROUARD KEVIN 
 
-======================================================================
-VERSION FRANÇAISE
-======================================================================
+**VERSION FRANÇAISE**
 
 1. Droits d’auteur
 Ce logiciel et ses fichiers associés sont protégés par le droit d’auteur.  
@@ -33,9 +31,7 @@ Aucun droit de brevet ni de marque n’est accordé par la présente licence.
 Toute utilisation d’un brevet ou d’une marque associée à ce logiciel 
 doit faire l’objet d’un accord séparé et explicite de l’auteur.
 
-======================================================================
-ENGLISH VERSION
-======================================================================
+**ENGLISH VERSION**
 
 1. Copyright
 This software and its associated files are protected by copyright.  
