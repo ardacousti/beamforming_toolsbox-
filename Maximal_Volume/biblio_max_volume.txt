@@ -1,0 +1,10 @@
+Bibliography::
+
+R. H. Hardin and N. J. A. Sloane, Codes (Spherical) and Designs (Experimental), 
+Proceedings of Symposia in Applied Mathematics, American Mathematical Society,
+ vol. 50, pp. 177–206, 1995.
+
+N. J. A. Sloane, Home Page. [Online]. Available: http://neilsloane.com/maxvolumes/index.html
+
+
+

@@ -1,0 +1,4 @@
+Bibliography::
+
+R. Womersley, Interpolation and Cubature on the Sphere, Mar. 2020. [Online]. 
+Available: https://web.maths.unsw.edu.au/~rsw/Sphere/MaxDet/
