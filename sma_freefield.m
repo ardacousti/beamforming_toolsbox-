@@ -6,7 +6,7 @@ function [P] = sma_freefield(mic_rad,sphwave,ph_s,th_s,k,kr,ka,krs,a0)
 %  Author: Kevin Rouard | 14 June 2024
 %**************************************************************************
     if k>1
-        INFTY = floor((1.2*ka + 8 * (krs./(ka) +1)./(krs./(ka)))) ;
+        INFTY = ceil((1.2*ka + 8 * (krs./(ka) +1)./(krs./(ka)))) ;
     else
         INFTY = 2 ;
     end
