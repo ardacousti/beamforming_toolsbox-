@@ -22,34 +22,34 @@ SAR2D(:,3) = SAR ;
 
 %% --- Figure & axes formatting ---
 fsz = 14 ;
-figure('Units','pixels','Position',[320 80 300 500]);
+figure('Units','pixels','Position',[80 150 700 200]);
 % Surface plot (view set to 2D)
-surf(1:size(SAR2D,2),kRR_lin,SAR2D,'EdgeColor','None'); hold on
+surf(kRR_lin.',1:size(SAR2D,2).',SAR2D.','EdgeColor','None'); hold on
 set(gca, 'YDir','normal')
-% Y label
-ylabel('$kr_a$', 'Interpreter', 'Latex','FontSize',fsz)
-set(gca,'Ytick',0:2:16)
-set(gca, 'YTickLabel', 0:2:16,'FontSize',fsz,'FontName','Times New Roman')
+% X label
+xlabel('$kr_a$', 'Interpreter', 'Latex','FontSize',fsz)
+set(gca,'Xtick',0:2:16)
+set(gca, 'XTickLabel', 0:2:16,'FontSize',fsz,'FontName','Times New Roman')
 grid on
 grid minor
-% X label
+% Y label
 Labll(2:3) = {'',geoName} ;
-set(gca,'Xtick',1:size(SAR2D,2))
-set(gca, 'XTickLabel', Labll,'FontSize',fsz,'FontName','Times New Roman')
+set(gca,'Ytick',1:size(SAR2D,2))
+set(gca, 'YTickLabel', Labll,'FontSize',fsz,'FontName','Times New Roman')
 % xtickangle(45)
 % Limits and view
-ylim([0 16])
-xlim([0 size(SAR2D,2)+2])
+xlim([0 16])
+ylim([0 size(SAR2D,2)+2])
 view(2)
 box on
 % Colorbar formatting
 c=colorbar;
-c.Title.String = '$\overline{\Omega}$';
-c.Title.Interpreter = 'latex' ;
-c.Title.VerticalAlignment = 'bottom' ;
+c.Location = 'northoutside' ;
+text(-1,5.7,'$\overline{\Omega}$','Color','black','FontSize',fsz,'Interpreter','Latex')
 set(c,'FontSize',fsz,'FontName','Times New Roman');
 % Colormap
-couleur = fliplr(parula(60)) ;
+couleur = flipud(turbo(60)); 
+% couleur = fliplr(parula(60)) ;
 couleur(end+1,:)=1;
 couleur(end+1,:)=1;
 couleur(end+1,:)=1;
@@ -63,7 +63,6 @@ tickLabels = cellstr(num2str(newTicks', '%.0f'));
 set(c, 'YTickLabel', tickLabels)
 kvecpl = repmat(2.5,510,1) ;
 % Black markers where error is +/- 5°
-plot3(kvecpl,kRR_lin.',SARer,'k.','linewidth',2,'markersize',8)
+plot3(kRR_lin,kvecpl.',SARer.','m.','linewidth',2,'markersize',8)
 
 end
-
