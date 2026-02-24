@@ -6,7 +6,7 @@ function [] = run_distribMSR(param,geoName,sphType,algoType,distribMSR)
 % Author:           Kevin Rouard
 % Date:             23 August 2025
 %**************************************************************************
-if any(strcmpi(distribMSR,'Y'))
+if any(strcmpi(distribMSR,'N'))
     return
 end
     %% Supplementary parameters
@@ -75,6 +75,7 @@ end
     %% Display disribution of MSR figure
     fig_distribMSR(geoName,param.Q,plotImage,kraLin)
 end
+
 
 
 
