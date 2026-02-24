@@ -47,10 +47,9 @@ c.Location = 'northoutside' ;
 text(-1.5,5.8,'MLD','Color','black','FontSize',fsz,'FontName','Times New Roman')
 set(c,'FontSize',fsz,'FontName','Times New Roman');
 % Colormap
-couleur0 = turbo(6);
-couleur =  [flipud(couleur0); [1 ,1, 1]; [1, 1, 1] ];
-% couleur0 = turbo(12) ;
-% couleur =  [[1, 1, 1] ;[1, 1, 1] ; couleur0 ; [1 ,1, 1]; [1, 1, 1] ];
+N = 5; % Color scale density with 0.5 dB steps
+couleur0 = turbo(N*6);
+couleur =  [flipud(couleur0); repmat([1 ,1, 1],2*N,1) ];
 colormap(couleur)
 clim([0 4])
 
@@ -59,3 +58,4 @@ kvecpl = repmat(2.5,510,1) ;
 plot3(kRR_lin,kvecpl.'',MLDer.','m.','linewidth',2,'markersize',8)
 
 end
+
