@@ -9,7 +9,7 @@
 % Influence of spherical microphone array design on acoustic images
 % obtained with conventional and spherical harmonic beamforming, JSV.
 %**************************************************************************
-
+% close all
 %% Set parameters
 % Set a fixed source-array radius rs (m) and its position
 param.rs=2;
@@ -19,6 +19,10 @@ param.phi = 0; % [-180,180]
 % Set a fixed array radius ra (m) and a number of microphone Q
 param.ra=0.1;
 param.Q=24;
+
+% Set noise and seed
+param.SNR = +100;  % dB
+param.seed = 'Y'; 
 
 % Set the geometry
 geoName = 't-design'; % See the list of geometry names
@@ -46,4 +50,5 @@ distribMSR = 'N'; % 'Y'/'N'
 % Call the main functions
 run_acousticImaging(param,geoName,sphType,algoType,acousticImages,centeredSource)
 run_criteria(param,geoName,sphType,algoType,criteria)
+
 run_distribMSR(param,geoName,sphType,algoType,distribMSR)
