@@ -27,7 +27,7 @@ function [] = run_criteria(param,geoName,sphType,algoType,criteria)
 % Author:           Kevin Rouard
 % Date:             23 August 2025
 %**************************************************************************
-if any(strcmpi(criteria,'Y'))
+if any(strcmpi(criteria,'N'))
     return
 end
     %% Supplementary parameters
@@ -107,6 +107,7 @@ end
 
 
 end
+
 
 
 
