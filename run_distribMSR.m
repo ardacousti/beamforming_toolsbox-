@@ -40,6 +40,7 @@ if any(strcmpi(distribMSR,'Y'))
         sphWave = strcmpi(sphType, 'open') * 3 + strcmpi(sphType, 'rigid') * 4;
         % Simulated mic signals & CSM (instantaneous form)
         sigMic=sma_freefield([micRad1; micRad2],sphWave,source.azi_rad,source.inc_rad,k,krq,kra,krs,source.a0);
+        sigMic = funNoise(sigMic,param.SNR,param.seed);
         C = sigMic*sigMic'; % QxQ
         % ---------------- Algorithms ----------------
         if any(strcmpi(algoType,'CBF'))
@@ -73,4 +74,5 @@ if any(strcmpi(distribMSR,'Y'))
     fig_distribMSR(geoName,param.Q,plotImage,kraLin)
 end
 end
+
 
