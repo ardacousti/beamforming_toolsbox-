@@ -48,7 +48,7 @@ if any(strcmpi(criteria,'Y'))
     Nf   = numel(kraVec);
     plotImage = zeros(Nphi, Nth, Nf);
     %% Main frequency loop
-    parfor it = 1:Nf % Use parfor with SHB
+    parfor it = 1:Nf % Use parfor with SHB, or use a simple for loop
         %% Microphone positions for a given geometry
         % if any(strcmpi(centeredSource,'Y'))
         [~, mic0, aq, ~]=get_geo_positions(geoName,param.Q,ra_logMat(idkra(it)));
@@ -66,6 +66,7 @@ if any(strcmpi(criteria,'Y'))
         sphWave = strcmpi(sphType, 'open') * 3 + strcmpi(sphType, 'rigid') * 4;
         % Simulated mic signals & CSM (instantaneous form)
         sigMic=sma_freefield([micRad1; micRad2],sphWave,source.azi_rad,source.inc_rad,k,krq,kra,krs,source.a0);
+        sigMic = funNoise(sigMic,param.SNR,param.seed);
         C = sigMic*sigMic'; % QxQ
         % ---------------- Algorithms ----------------
         if any(strcmpi(algoType,'CBF'))
@@ -105,4 +106,5 @@ if any(strcmpi(criteria,'Y'))
 
 end
 end
+
 
