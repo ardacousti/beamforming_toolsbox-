@@ -20,15 +20,19 @@ for ia=1:dim4
     for ib=1:dim3
         figure()
         IMG2PLOT = squeeze(FULLIMG2PLOT(:,:,ia,ib));
-        surf(phi*180/pi,the*180/pi,IMG2PLOT.');
-        colormap(flipud(hot))
+        pcolor(phi*180/pi,the*180/pi,IMG2PLOT.');
+        set (gca,'YDir','reverse');
+        % colormap(flipud(hot))
+        colormap(hot_plus_blue(256,'Scale',[-15 5]))
         c=colorbar;
         c.Title.String = 'dB';
         set(c,'FontSize',16);
         hold on
-        clim([(max(max(IMG2PLOT))-15) max(max(IMG2PLOT))])
+        % clim([(max(max(IMG2PLOT))-15) max(max(IMG2PLOT))])
+        clim([-15 5])
         xlabel('$\phi\,$ (degrees)','FontSize',16,'Interp','Latex');
         ylabel('$\theta\,$ (degrees)','FontSize',16,'Interp','Latex');
+        set(gca,'FontSize',16);
         shading interp
         axis equal tight
         axis([-179 179 0 179])
@@ -37,3 +41,4 @@ for ia=1:dim4
     end
 end
 end
+
