@@ -28,6 +28,8 @@ function [] = run_criteria(param,geoName,sphType,algoType,criteria)
 % Date:             23 August 2025
 %**************************************************************************
 if any(strcmpi(criteria,'Y'))
+    return
+end
     %% Supplementary parameters
     freq = octavebandtradfun(200,8000,'third').'; % vector of frequencies (Hz)
     ra_log = logspace(log10(0.04),log10(0.40),30);
@@ -105,6 +107,6 @@ if any(strcmpi(criteria,'Y'))
 
 
 end
-end
+
 
 
