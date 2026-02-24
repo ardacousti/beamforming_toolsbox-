@@ -7,6 +7,8 @@ function [] = run_distribMSR(param,geoName,sphType,algoType,distribMSR)
 % Date:             23 August 2025
 %**************************************************************************
 if any(strcmpi(distribMSR,'Y'))
+    return
+end
     %% Supplementary parameters
     kraLin = 2:0.05:8;
     param.ra = 0.05; 
@@ -73,6 +75,6 @@ if any(strcmpi(distribMSR,'Y'))
     %% Display disribution of MSR figure
     fig_distribMSR(geoName,param.Q,plotImage,kraLin)
 end
-end
+
 
 
