@@ -1,20 +1,70 @@
-function [output] = funNoise(sig_mic,SNR,seed)
+function [output] = funNoise(sig_mic, SNR, seed, option)
+% funNoise Add white noise or amplitude/phase defects to an input signal.
+%
+% Inputs:
+%   sig_mic : Input signal
+%   SNR     : Signal-to-noise ratio in dB
+%   seed    : 'Y' to use fixed random seeds, otherwise random noise
+%   option  : Noise/defect type
+%             'gaus'    -> real Gaussian white noise
+%             'gausC'   -> complex Gaussian white noise
+%             'amp'     -> amplitude defect
+%             'phase'   -> phase defect
+%             'phasamp' -> phase and amplitude defect
+%
+% If option is not provided or is empty, the default is 'gaus'.
 
-% author : Kevin ROUARD, 2025/09/19
-
-% see : A. Pereira, Acoustic Imaging in Enclosed Spaces, Ph.D. thesis, INSA de Lyon, 2014.
-
-Q = length(sig_mic);
-
-if strcmpi(seed,'Y'), rng(3300,'combRecursive'); end, gamma = randn ; 
-if strcmpi(seed,'Y'), rng(2892,'combRecursive'); end, delta = randn ; 
-
-if strcmpi(seed,'Y'), rng(1394,'combRecursive'); end, epsilon=2*pi*randn; 
-if strcmpi(seed,'Y'), rng(5580,'combRecursive'); end, zeta   =2*pi*randn; 
-
-for iq = 1:Q
-    Z(iq,:) = 10^(-SNR/20)*(gamma*exp(1i*epsilon)*sig_mic(iq) + delta*exp(1i*zeta)*sqrt(norm(sig_mic).^2/Q) ).';
+if nargin < 4 || isempty(option)
+    option = 'gaus';
 end
 
-output = sig_mic + Z; 
+if strcmpi(seed, 'Y')
+    rng(42); Rnoise = randn(size(sig_mic));
+    rng(3300, 'combRecursive'); Cnoise = 1i * randn(size(sig_mic));
+else
+    Rnoise = randn(size(sig_mic));
+    Cnoise = 1i * randn(size(sig_mic));
+end
+
+Ps = mean(abs(sig_mic(:)).^2);
+Pn = Ps / 10^(SNR/10);
+
+switch lower(option)
+    case 'gausc'
+        % Complex Gaussian white noise
+        noiseo = (Rnoise + Cnoise) / sqrt(2);
+    case {'gaus', 'amp'}
+        % Real Gaussian white noise or amplitude defect
+        noiseo = Rnoise;
+    case 'phase'
+        % Phase defect
+        noiseo = exp(-Cnoise);
+    case 'phasamp'
+        % Phase and amplitude defect
+        noiseo = Rnoise .* exp(-Cnoise);
+    otherwise
+        error("Invalid option. Use 'gaus', 'gausc', 'amp', 'phase', or 'phasamp'.");
+end
+
+noisen = noiseo / sqrt(mean(abs(noiseo(:)).^2));
+
+switch lower(option)
+    case {'gausc', 'gaus'}
+        % Additive Gaussian white noise
+        noisen2 = sqrt(Pn) * noisen;
+        output = sig_mic + noisen2;
+    case 'amp'
+        % Amplitude defect
+        noisen2 = sqrt(Pn/Ps) * noisen;
+        output = sig_mic .* (1 + noisen2);
+    case 'phase'
+        % Phase defect
+        noisen2 = sqrt(Pn/Ps) * noisen;
+        output = sig_mic .* (1 + noisen2);
+    case 'phasamp'
+        % Phase and amplitude defect
+        noisen2 = sqrt(Pn/Ps) * noisen;
+        output = sig_mic .* (1 + noisen2);
+end
+
 end
