@@ -99,9 +99,9 @@ function [ x, y, z, w, N ] = ld_by_order ( order )
   elseif ( order == 5810 )
     [ x, y, z, w ] = ld5810 ( ); N = floor(precision_table(32)/2) ;
   else
-    fprintf ( 1, '\n' );
-    fprintf ( 1, 'LD_BY_ORDER - Fatal error!\n' );
-    fprintf ( 1, '  Unexpected value of ORDER.\n' );
+   % fprintf ( 1, '\n' );
+   % fprintf ( 1, 'LD_BY_ORDER - Fatal error!\n' );
+   % fprintf ( 1, '  Unexpected value of ORDER.\n' );
     error ( 'LD_BY_ORDER - Fatal error!' );
   end
 
