@@ -12,7 +12,7 @@ index = find(Q == nb_mic);
 if ~isempty(index)
     Nmax = N(index);
 else
-    disp('Non available number of microphone');
+    error('Non available number of microphone');
     Nmax = [];
 end
 
