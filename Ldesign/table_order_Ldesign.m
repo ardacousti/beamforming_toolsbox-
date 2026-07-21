@@ -41,7 +41,7 @@ if ~isempty(index)
     t_order = t(index) ; 
     Nmax = floor(t(index)/2) ;
 else
-    disp('Non available number of microphone');
+    error('Non available number of microphone');
     Nmax = [];
 end
 
