@@ -16,8 +16,8 @@ try
 catch
     dim3 = 1;
 end
-for ia=1:dim4
-    for ib=1:dim3
+for ib=1:dim4
+    for ia=1:dim3
         figure()
         IMG2PLOT = squeeze(FULLIMG2PLOT(:,:,ia,ib));
         pcolor(phi*180/pi,the*180/pi,IMG2PLOT.');
